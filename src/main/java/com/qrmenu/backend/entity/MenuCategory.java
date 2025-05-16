@@ -16,9 +16,13 @@ public class MenuCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+
+    @Column(name = "display_order")
+    private Integer displayOrder; // Menüde sıralama için
 }
