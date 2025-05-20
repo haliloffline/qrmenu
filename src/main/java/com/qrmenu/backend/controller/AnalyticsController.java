@@ -1,5 +1,6 @@
 package com.qrmenu.backend.controller;
 
+import com.qrmenu.backend.dto.DateRangeDto;
 import com.qrmenu.backend.dto.TableAccessStatsDto;
 import com.qrmenu.backend.dto.TableUsageStatsDto;
 import com.qrmenu.backend.service.AnalyticsService;
@@ -27,4 +28,12 @@ public class AnalyticsController {
     public ResponseEntity<List<TableAccessStatsDto>> getTableAccessStats() {
         return ResponseEntity.ok(analyticsService.getMostAccessedTables());
     }
+
+    @PostMapping("/table-access/date-range")
+    public ResponseEntity<List<TableAccessStatsDto>> getAccessStatsByRange(
+            @RequestBody DateRangeDto dto
+    ) {
+        return ResponseEntity.ok(analyticsService.getAccessStatsByDateRange(dto));
+    }
+
 }
