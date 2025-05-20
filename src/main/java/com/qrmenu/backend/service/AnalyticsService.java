@@ -59,4 +59,19 @@ public class AnalyticsService {
             }
         }
     }
+    public List<TableUsageStatsDto> getCallStatsByDateRange(DateRangeDto dto) {
+        Map<String, LocalDate> range = DateRangeUtil.resolve(dto);
+
+        if (range == null || dto.getRestaurantId() == null) {
+            throw new IllegalArgumentException("Call stats requires restaurantId and date range.");
+        }
+
+        LocalDateTime start = range.get("start").atStartOfDay();
+        LocalDateTime end = range.get("end").atTime(23, 59, 59);
+
+        return callRequestRepository.getTableUsageStatsByRestaurantAndDateRange(
+                dto.getRestaurantId(), start, end
+        );
+    }
+
 }

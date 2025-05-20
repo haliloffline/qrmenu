@@ -36,4 +36,12 @@ public class AnalyticsController {
         return ResponseEntity.ok(analyticsService.getAccessStatsByDateRange(dto));
     }
 
+    @PostMapping("/table-usage/date-range")
+    public ResponseEntity<List<TableUsageStatsDto>> getCallStatsByDateRange(
+            @RequestBody DateRangeDto dto
+    ) {
+        return ResponseEntity.ok(analyticsService.getCallStatsByDateRange(dto));
+    }
+
+
 }
